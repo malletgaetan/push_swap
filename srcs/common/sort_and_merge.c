@@ -38,6 +38,9 @@ void	sort_and_merge(t_stack *sa, t_stack *sb, t_uint len_a, t_uint len_b)
 	t_uint	len_ib;
 	// t_uint	i;
 	
+	// printf("sort_and_merge len_a %u len_b %u\n", len_a, len_b);
+	// print_stack(sa, "sa", len_a);
+	// print_stack(sb, "sb", len_b);
 	if (sa->len == len_a)
 		len_ia = sort_inst_entire(sa, len_a, instructions_a, asc_cmp);
 	else

@@ -13,7 +13,7 @@ static t_uint	push_half_b(t_stack *from, t_stack *to, int median, t_uint len, t_
 	while(len > (_len / 2))
 	{
 		++i;
-		if (cmp(from->top->value, median) || ((len % 2) && (median == from->top->value)))
+		if (cmp(from->top->value, median) || ((_len % 2) && (median == from->top->value)))
 		{
 			push(from, to);
 			--len;
@@ -63,10 +63,8 @@ static int	quicksort_b(t_stack *sa, t_stack *sb, t_uint len)
 	t_uint	pushed_under;
 	int		err;
 
-	if (len <= 3)
-		return (0);
-	
 	// printf("quicksort_b on len %u\n", len);
+	// print_stack(sb, "quicksort_b", len);
 	if (is_stack_sorted(sb, len, desc_cmp))
 	{
 		while (len--)
@@ -79,7 +77,8 @@ static int	quicksort_b(t_stack *sa, t_stack *sb, t_uint len)
 	if (sb->len > len)
 		reset_placement(sb, pushed_under);
 	err = quicksort_a(sa, sb, (len / 2) + (len % 2), len / 2);
-	err |= quicksort_b(sa, sb, len / 2);
+	if ((len / 2) + (len % 2) > 3)
+		err |= quicksort_b(sa, sb, (len / 2));
 	return (err);
 }
 
@@ -89,9 +88,10 @@ int	quicksort_a(t_stack *sa, t_stack *sb, t_uint len_a, t_uint len_b)
 	int		err;
 	t_uint	pushed_under;
 
-	// printf("quicksort_a on len %u\n", len_a);
+	// print_stack(sa, "quicksort_a", len_a);
 	if (len_a <= 3)
 	{
+		// printf("sort and merge on a %u and b %u\n", len_a, len_b);
 		// print_stack(sa, "sa");
 		// print_stack(sb, "sb");
 		sort_and_merge(sa, sb, len_a, len_b);
@@ -107,6 +107,7 @@ int	quicksort_a(t_stack *sa, t_stack *sb, t_uint len_a, t_uint len_b)
 	if (sa->len > len_a)
 		reset_placement(sa, pushed_under);
 	err = quicksort_a(sa, sb, (len_a / 2) + (len_a % 2), (len_a / 2));
-	err |= quicksort_b(sa, sb, (len_a / 2));
+	if (((len_a / 2) + (len_a % 2)) > 3)
+		err |= quicksort_b(sa, sb, (len_a / 2));
 	return (err);
 }

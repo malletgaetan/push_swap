@@ -17,8 +17,8 @@ int	main(int argc, char **argv)
 	init_stack(&sa, 'a', buf, (t_uint)argc - 1);
 	init_stack(&sb, 'b', NULL, 0);
 	err = quicksort_a(&sa, &sb, sa.len, sb.len);
-	// print_stack(&sa, "sa result");
-	// print_stack(&sb, "sb result");
+	// print_stack(&sa, "sa", 0);
+	// print_stack(&sb, "sb", 0);
 	if (err)
 		error_handler();
 	else

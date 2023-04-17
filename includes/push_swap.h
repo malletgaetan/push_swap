@@ -41,7 +41,7 @@ typedef struct s_stack
 } t_stack;
 
 
-void	print_stack(t_stack *s, char *msg);
+void	print_stack(t_stack *s, char *msg, t_uint len);
 
 void	init_stack(t_stack *stack, char id, t_list *top, t_uint len);
 int		stack_push(t_stack *from, t_stack *to);

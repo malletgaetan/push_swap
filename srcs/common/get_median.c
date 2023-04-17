@@ -1,6 +1,5 @@
 #include "push_swap.h"
 
-
 static void insertion_sort(int *arr, t_uint len)
 {
     t_uint	i;
