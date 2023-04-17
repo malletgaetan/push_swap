@@ -19,7 +19,13 @@ static t_bool	ft_atoi(const char *str, int *count)
 	}
 	while (ft_isdigit(*str))
 	{
-		*count = (*count * 10) + (*str - '0');
+
+		if (*count > (INT_MAX / 10))
+			return (1);
+		*count = (*count * 10);
+		if (*count > INT_MAX - (*str - '0'))
+			return (1);
+		*count += (*str - '0');
 		str++;
 	}
 	*count *= sign;
@@ -28,19 +34,16 @@ static t_bool	ft_atoi(const char *str, int *count)
 
 int fill_and_validate(char **numbers, t_uint len, t_list *lst)
 {
-	t_uint	i;
+	int		i;
 	t_uint	j;
 
-	i = 0;
-	while (i < len)
+	i = -1;
+	while (++i < len)
 	{
 		if (ft_atoi(numbers[i], &(lst[i].value)))
 			return (1);
 		if (i == 0)
-		{
-			++i;
 			continue;
-		}
 		j = 0;
 		while (j < i)
 		{
@@ -50,7 +53,6 @@ int fill_and_validate(char **numbers, t_uint len, t_list *lst)
 		}
 		lst[i].previous = lst + i - 1;
 		lst[i - 1].next = lst + i;
-		++i;
 	}
 	lst[0].previous = lst + i - 1;
 	lst[i - 1].next = lst;

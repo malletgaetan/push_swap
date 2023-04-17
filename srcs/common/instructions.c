@@ -10,8 +10,6 @@ int	push(t_stack *from, t_stack *to)
 	if (stack_push(from, to))
 		return (1);
 	write(STDOUT_FILENO, msg, 3);
-	// print_stack(from, "from");
-	// print_stack(to, "to");
 	return (0);
 }
 
@@ -26,8 +24,6 @@ void	rotate_both(t_stack *sa, t_stack *sb, t_bool reverse)
 	stack_rotate(sa, reverse);
 	stack_rotate(sb, reverse);
 	write(STDOUT_FILENO, msg + !reverse, 3 + reverse);
-	// print_stack(sa, "sa");
-	// print_stack(sb, "sb");
 }
 
 void	rotate(t_stack *stack, t_bool reverse)
@@ -40,7 +36,6 @@ void	rotate(t_stack *stack, t_bool reverse)
 	msg[3] = '\n';
 	stack_rotate(stack, reverse);
 	write(STDOUT_FILENO, msg + !reverse, 3 + reverse);
-	// print_stack(stack, "stack");
 }
 
 void	swap(t_stack *stack)
@@ -52,7 +47,6 @@ void	swap(t_stack *stack)
 	msg[2] = '\n';
 	stack_swap(stack);
 	write(STDOUT_FILENO, msg, 3);
-	// print_stack(stack, "stack");
 }
 
 void	swap_both(t_stack *sa, t_stack *sb)
@@ -65,6 +59,4 @@ void	swap_both(t_stack *sa, t_stack *sb)
 	stack_swap(sa);
 	stack_swap(sb);
 	write(STDOUT_FILENO, msg, 3);
-	// print_stack(sa, "sa");
-	// print_stack(sb, "sb");
 }

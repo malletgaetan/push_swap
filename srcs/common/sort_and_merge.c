@@ -36,11 +36,7 @@ void	sort_and_merge(t_stack *sa, t_stack *sb, t_uint len_a, t_uint len_b)
 	int	instructions[10];
 	t_uint	len_ia;
 	t_uint	len_ib;
-	// t_uint	i;
-	
-	// printf("sort_and_merge len_a %u len_b %u\n", len_a, len_b);
-	// print_stack(sa, "sa", len_a);
-	// print_stack(sb, "sb", len_b);
+
 	if (sa->len == len_a)
 		len_ia = sort_inst_entire(sa, len_a, instructions_a, asc_cmp);
 	else
@@ -49,19 +45,7 @@ void	sort_and_merge(t_stack *sa, t_stack *sb, t_uint len_a, t_uint len_b)
 		len_ib = sort_inst_entire(sb, len_b, instructions_b, desc_cmp);
 	else
 		len_ib = sort_inst_part(sb, len_b, instructions_b, desc_cmp);
-	// i = 0;
-	// printf("instructions for a\n");
-	// while (i < len_ia)
-	// 	printf("%d\n", instructions_a[i++]);
-	// i = 0;
-	// printf("instructions for b\n");
-	// while (i < len_ib)
-	// 	printf("%d\n", instructions_b[i++]);
 	merge_instructions(instructions_a, instructions_b, len_ia, len_ib, instructions);
-	// i = 0;
-	// printf("instructions merged\n");
-	// while (instructions[i])
-	// 	printf("%d\n", instructions[i++]);
 	execute_instructions(sa, sb, instructions);
 	while (len_b--)
 		push(sb, sa);

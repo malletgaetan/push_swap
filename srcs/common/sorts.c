@@ -20,7 +20,6 @@ t_uint	sort_inst_part(t_stack *s, t_uint len, int instructions[5], t_bool (*cmp)
 	int	arr[3];
 	t_uint	i;
 
-	// printf("sort_inst_part on s%c with len %u\n", s->id, len);
 	if (is_stack_sorted(s, len, cmp))
 		return (0);
 	cpy(s, len, arr);
@@ -55,7 +54,6 @@ t_uint	sort_inst_entire(t_stack *s, t_uint len, int instructions[5], t_bool (*cm
 	t_uint	a;
 	t_uint	b;
 
-	// printf("sort_inst_entire on s%c with len %u\n", s->id, len);
 	if (is_stack_sorted(s, len, cmp))
 		return (0);
 	if (len == 2)
