@@ -29,7 +29,7 @@ clean:
 	$(RM) $(PUSH_SWAP_OBJS) $(CHECKER_OBJS) $(COMMON_OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+	$(RM) $(PUSH_SWAP) $(CHECKER)
 
 re: fclean all
 

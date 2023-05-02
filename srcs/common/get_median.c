@@ -1,24 +1,36 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_median.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 13:23:48 by gmallet           #+#    #+#             */
+/*   Updated: 2023/05/02 13:38:02 by gmallet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-static void insertion_sort(int *arr, t_uint len)
+static void	insertion_sort(int *arr, t_uint len)
 {
-    t_uint	i;
+	t_uint	i;
 	int		j;
 	int		key;
 
 	i = 0;
-    while (i < len)
+	while (i < len)
 	{
-        key = arr[i];
-        j = i - 1;
-        while (j >= 0 && arr[j] > key)
+		key = arr[i];
+		j = i - 1;
+		while (j >= 0 && arr[j] > key)
 		{
-            arr[j + 1] = arr[j];
-            j = j - 1;
-        }
-        arr[j + 1] = key;
+			arr[j + 1] = arr[j];
+			j = j - 1;
+		}
+		arr[j + 1] = key;
 		++i;
-    }
+	}
 }
 
 static void	arrayify(t_stack *stack, int *arr, t_uint len)

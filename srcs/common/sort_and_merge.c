@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_and_merge.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 13:24:11 by gmallet           #+#    #+#             */
+/*   Updated: 2023/05/02 14:15:22 by gmallet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	execute_instructions(t_stack *sa, t_stack *sb, int instructions[10])
@@ -31,21 +43,19 @@ static void	execute_instructions(t_stack *sa, t_stack *sb, int instructions[10])
 
 void	sort_and_merge(t_stack *sa, t_stack *sb, t_uint len_a, t_uint len_b)
 {
-	int	instructions_a[5];
-	int	instructions_b[5];
-	int	instructions[10];
-	t_uint	len_ia;
-	t_uint	len_ib;
+	t_inst	inst_a;
+	t_inst	inst_b;
+	int		instructions[10];
 
 	if (sa->len == len_a)
-		len_ia = sort_inst_entire(sa, len_a, instructions_a, asc_cmp);
+		inst_a.len = sort_all(sa, len_a, &inst_a, asc_cmp);
 	else
-		len_ia = sort_inst_part(sa, len_a, instructions_a, asc_cmp);
+		inst_a.len = sort_part(sa, len_a, &inst_a, asc_cmp);
 	if (sb->len == len_b)
-		len_ib = sort_inst_entire(sb, len_b, instructions_b, desc_cmp);
+		inst_b.len = sort_all(sb, len_b, &inst_b, desc_cmp);
 	else
-		len_ib = sort_inst_part(sb, len_b, instructions_b, desc_cmp);
-	merge_instructions(instructions_a, instructions_b, len_ia, len_ib, instructions);
+		inst_b.len = sort_part(sb, len_b, &inst_b, desc_cmp);
+	merge_instructions(&inst_a, &inst_b, instructions);
 	execute_instructions(sa, sb, instructions);
 	while (len_b--)
 		push(sb, sa);

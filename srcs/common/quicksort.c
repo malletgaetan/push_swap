@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   quicksort.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 13:24:08 by gmallet           #+#    #+#             */
+/*   Updated: 2023/05/02 13:44:33 by gmallet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static t_uint	push_half_b(t_stack *from, t_stack *to, int median, t_uint len)
@@ -12,7 +24,8 @@ static t_uint	push_half_b(t_stack *from, t_stack *to, int median, t_uint len)
 	while (len > (_len / 2))
 	{
 		++i;
-		if (from->top->value > median || ((_len % 2) && (median == from->top->value)))
+		if (from->top->value > median
+			|| ((_len % 2) && (median == from->top->value)))
 		{
 			push(from, to);
 			--len;
@@ -36,7 +49,8 @@ static t_uint	push_half_a(t_stack *from, t_stack *to, int median, t_uint len)
 	while (len > ((_len / 2) + (_len % 2)))
 	{
 		++i;
-		if (from->top->value < median || ((_len % 2 == 0) && (median == from->top->value)))
+		if (from->top->value < median
+			|| ((_len % 2 == 0) && (median == from->top->value)))
 		{
 			push(from, to);
 			--len;

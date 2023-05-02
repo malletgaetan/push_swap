@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/05/02 13:25:19 by gmallet           #+#    #+#             */
+/*   Updated: 2023/05/02 13:46:53 by gmallet          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	main(int argc, char **argv)
@@ -5,7 +17,6 @@ int	main(int argc, char **argv)
 	t_stack	sa;
 	t_stack	sb;
 	t_list	*buf;
-	int		err;
 
 	if (init_list(&buf, (t_uint)argc - 1))
 		return (error_handler());
@@ -16,19 +27,15 @@ int	main(int argc, char **argv)
 	}
 	init_stack(&sa, 'a', buf, (t_uint)argc - 1);
 	init_stack(&sb, 'b', NULL, 0);
-	err = quicksort_a(&sa, &sb, sa.len, sb.len);
-	// print_stack(&sa, "sa", 0);
-	// print_stack(&sb, "sb", 0);
-	if (err)
-		error_handler();
-	else
+	if (quicksort_a(&sa, &sb, sa.len, sb.len))
 	{
-		if (is_stack_sorted(&sa, (t_uint)argc - 1, asc_cmp))
-			write(STDOUT_FILENO, "OK\n", 3);
-		else
-			write(STDOUT_FILENO, "KO\n", 3);
+		free(buf);
+		return (error_handler());
 	}
+	if (is_stack_sorted(&sa, (t_uint)argc - 1, asc_cmp))
+		write(STDOUT_FILENO, "OK\n", 3);
+	else
+		write(STDOUT_FILENO, "KO\n", 3);
 	free(buf);
-	return (err);
+	return (0);
 }
-
