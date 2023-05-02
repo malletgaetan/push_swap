@@ -22,7 +22,7 @@ More [here](https://github.com/malletgaetan/push_swap/blob/main/srcs/common/quic
 3. call quicksort stack a
 4. call quicksort stack b
 
-### sort stack b
+### quicksort stack b
 More [here](https://github.com/malletgaetan/push_swap/blob/main/srcs/common/quicksort.c)
 
 1. push every values more than median to stack a
