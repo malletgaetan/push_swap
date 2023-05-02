@@ -1,13 +1,30 @@
 # push_swap
 sort stack using limited instructions
 
-## Algorithm
+## Quicksort inspired algorithm
 
-quicksort inspired algorithm:
+The used algorithm globally works like quicksort, with some tricks to lower the instructions using the `rr`, `rrr` and `ss` instructions.
 
-considering stack a is stack that contains all numbers by default, and stack b is empty.
+Here is a simplified version.
 
-- push all numbers from stack a to b that are less than median
-- call quicksort on stack a again if len of quicksort a is more than 3
-- find instructions for sorting a and b, merge those instructions together and execute on stacks
-- call quicksort on stack b if stack a is bigger than 3
+### sort_and_merge
+More [here](https://github.com/malletgaetan/push_swap/blob/main/srcs/common/sort_and_merge.c)
+
+1. find instructions to sort a
+2. find instructions to sort b
+3. compress them using `rr`, `rrr` and `ss` instructions
+
+### quicksort stack a
+More [here](https://github.com/malletgaetan/push_swap/blob/main/srcs/common/quicksort.c)
+
+1. if len <= 3, then b last part should be less than or equal to 3 in len, so call sort_and_merge function and return
+2. push every values less than median to stack b
+3. call quicksort stack a
+4. call quicksort stack b
+
+### sort stack b
+More [here](https://github.com/malletgaetan/push_swap/blob/main/srcs/common/quicksort.c)
+
+1. push every values more than median to stack a
+2. call quicksort stack a
+3. call quicksort stack b
