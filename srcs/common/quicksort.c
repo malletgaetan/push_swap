@@ -9,7 +9,7 @@ static t_uint	push_half_b(t_stack *from, t_stack *to, int median, t_uint len)
 	_len = len;
 	i = 0;
 	pushed_under = 0;
-	while(len > (_len / 2))
+	while (len > (_len / 2))
 	{
 		++i;
 		if (from->top->value > median || ((_len % 2) && (median == from->top->value)))
@@ -33,10 +33,10 @@ static t_uint	push_half_a(t_stack *from, t_stack *to, int median, t_uint len)
 	_len = len;
 	i = 0;
 	pushed_under = 0;
-	while(len > ((_len / 2) + (_len % 2)))
+	while (len > ((_len / 2) + (_len % 2)))
 	{
 		++i;
-		if (from->top->value < median || ((_len % 2 == 0) && from->top->value == median))
+		if (from->top->value < median || ((_len % 2 == 0) && (median == from->top->value)))
 		{
 			push(from, to);
 			--len;
