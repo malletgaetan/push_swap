@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmallet <gmallet@student.42lehavre.fr>     +#+  +:+       +#+        */
+/*   By: gmallet <gmallet@student.42lehavre.fr >    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 13:47:07 by gmallet           #+#    #+#             */
-/*   Updated: 2023/05/02 14:14:09 by gmallet          ###   ########.fr       */
+/*   Updated: 2023/06/13 20:57:55 by gmallet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@
 # define RROTATE 7
 # define RROTATE_A 8
 # define RROTATE_B 9
+# ifdef CHECKER
+#  define PRINT_INSTRUCTIONS 0
+# else
+#  define PRINT_INSTRUCTIONS 1
+# endif
 
 # include <limits.h>
 # include <stdlib.h>
@@ -74,10 +79,10 @@ int		get_median(t_stack *stack, t_uint len, int *res);
 void	sort_and_merge(t_stack *sa, t_stack *sb, t_uint len_a, t_uint len_b);
 
 int		push(t_stack *from, t_stack *to);
-void	rotate_both(t_stack *sa, t_stack *sb, t_bool reverse);
-void	rotate(t_stack *stack, t_bool reverse);
-void	swap(t_stack *stack);
-void	swap_both(t_stack *sa, t_stack *sb);
+int		rotate_both(t_stack *sa, t_stack *sb, t_bool reverse);
+int		rotate(t_stack *stack, t_bool reverse);
+int		swap(t_stack *stack);
+int		swap_both(t_stack *sa, t_stack *sb);
 
 int		quicksort_a(t_stack *sa, t_stack *sb, t_uint len_a, t_uint len_b);
 
