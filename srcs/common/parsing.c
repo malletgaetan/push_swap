@@ -31,15 +31,15 @@ static t_bool	ft_atoi(const char *str, int *count)
 	}
 	while (ft_isdigit(*str))
 	{
-		if (*count > (INT_MAX / 10))
+		if ((*count > (INT_MAX / 10)) || (*count < (INT_MIN / 10)))
 			return (1);
 		*count = (*count * 10);
-		if (*count > (INT_MAX - (*str - '0')))
+		if ((*count > (INT_MAX - (*str - '0')))
+			|| (*count < (INT_MIN + (*str - '0'))))
 			return (1);
-		*count += (*str - '0');
+		*count += (sign * (*str - '0'));
 		str++;
 	}
-	*count *= sign;
 	return (*str != '\0');
 }
 
